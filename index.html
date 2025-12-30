@@ -45,14 +45,9 @@
       min-width:0;
     }
     .logo{
-      height:26px;
+      height:28px;
       width:auto;
       display:block;
-    }
-    .tagline{
-      font-size:13px;
-      color:#555;
-      margin-top:2px;
     }
     nav{
       display:flex;
@@ -90,9 +85,7 @@
     .cta:hover{filter:brightness(0.95)}
 
     /* Hero */
-    .hero{
-      padding:18px 0 6px;
-    }
+    .hero{padding:18px 0 6px;}
     h1{
       font-size:30px;
       margin:0 0 10px;
@@ -112,6 +105,13 @@
       text-transform:uppercase;
       color:var(--blue);
       margin:0 0 12px;
+    }
+    h3.subhead{
+      margin:14px 0 10px;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:#555;
     }
 
     .grid{
@@ -165,8 +165,32 @@
       padding:14px;
     }
     .contact p{margin:0;color:#444}
-    .contact strong{color:var(--dark)}
     .muted{color:#666;font-size:13px}
+
+    /* Copy email button */
+    .ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:6px;
+      background:#fff;
+      color:#444;
+      font-weight:750;
+      font-size:13px;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+    .ghost:hover{filter:brightness(0.98)}
+    .toast{
+      display:none;
+      margin-top:10px;
+      font-size:13px;
+      color:#2b2e2f;
+    }
+    .toast.show{display:block}
 
     footer{
       border-top:1px solid var(--line);
@@ -178,6 +202,7 @@
       justify-content:space-between;
       gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     @media (max-width: 860px){
@@ -194,16 +219,15 @@
     <div class="topbar">
       <div class="brand">
         <img class="logo" src="logo.svg" alt="ESPNER" />
-        <div>
-          <div class="tagline">Reparación · Diagnóstico · Servicio técnico</div>
-        </div>
       </div>
 
       <nav>
         <a href="#servicios">Servicios</a>
         <a href="#marcas">Marcas</a>
         <a href="#contacto">Contacto</a>
-        <a class="cta" href="https://wa.me/52TU_NUMERO_AQUI" target="_blank" rel="noopener">WhatsApp</a>
+
+        <!-- WhatsApp top button -->
+        <a class="cta" id="waTop" href="#" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
     </div>
 
@@ -237,6 +261,8 @@
     <!-- Brands -->
     <section id="marcas">
       <h2>Marcas que atendemos</h2>
+
+      <h3 class="subhead">Celulares</h3>
       <div class="chips">
         <span class="chip">Apple (iPhone)</span>
         <span class="chip">Samsung</span>
@@ -249,6 +275,18 @@
         <span class="chip">OnePlus</span>
         <span class="chip">Google Pixel</span>
       </div>
+
+      <h3 class="subhead">Laptops</h3>
+      <div class="chips" style="margin-top:6px;">
+        <span class="chip">HP</span>
+        <span class="chip">Dell</span>
+        <span class="chip">Lenovo</span>
+        <span class="chip">ASUS</span>
+        <span class="chip">Acer</span>
+        <span class="chip">Apple (MacBook)</span>
+        <span class="chip">MSI</span>
+      </div>
+
       <p class="muted" style="margin-top:10px;">
         ¿No ves tu marca? Escríbenos — normalmente podemos revisarla.
       </p>
@@ -259,12 +297,22 @@
       <h2>Contacto</h2>
       <div class="contact">
         <div>
-          <p><strong>Correo:</strong> <a href="mailto:contact@espner.org">contact@espner.org</a></p>
-          <p><strong>WhatsApp:</strong> <a href="https://wa.me/52TU_NUMERO_AQUI" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+          <p><strong>Correo:</strong> <a href="mailto:contact@espner.org" id="mailLink">contact@espner.org</a></p>
+          <p><strong>WhatsApp:</strong> <a href="#" id="waBottom" target="_blank" rel="noopener">Abrir chat en WhatsApp</a></p>
           <p class="muted">Horario: (pon tu horario aquí)</p>
+
+          <div class="toast" id="toast">Copiado: contact@espner.org</div>
         </div>
-        <div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <!-- This SHOULD open the mail app if user has one -->
           <a class="cta" href="mailto:contact@espner.org">Enviar correo</a>
+
+          <!-- Copy email fallback (works even if mail app isn't configured) -->
+          <button class="ghost" id="copyEmail" type="button">Copiar correo</button>
+
+          <!-- WhatsApp CTA -->
+          <a class="cta" href="#" id="waCta" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </section>
@@ -277,8 +325,38 @@
   </div>
 
   <script>
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // === WhatsApp setup ===
+    // Put your number here (digits only). Example: 525548502918
+    const WHATSAPP_NUMBER = "5255520176224"; // 52 + your number
+
+    const PREFILL = "Hola%2C%20te%20contacto%20desde%20el%20sitio%20de%20ESPNER.%0A%0AResponde%20con%20un%20n%C3%BAmero%3A%0A1)%20Cotizaci%C3%B3n%20%2F%20Diagn%C3%B3stico%0A2)%20Horarios%20y%20zona%0A3)%20Servicios%0A4)%20Garant%C3%ADa%0A5)%20Estado%20de%20reparaci%C3%B3n";
+
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${PREFILL}`;
+
+    document.getElementById('waTop').href = waUrl;
+    document.getElementById('waBottom').href = waUrl;
+    document.getElementById('waCta').href = waUrl;
+
+    // === Copy email button ===
+    const email = "contact@espner.org";
+    const btn = document.getElementById('copyEmail');
+    const toast = document.getElementById('toast');
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+      } catch (e) {
+        // Fallback if clipboard blocked
+        prompt("Copia este correo:", email);
+      }
+    });
   </script>
 </body>
 </html>
+
 
