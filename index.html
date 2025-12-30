@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESPNER — Reparación de celulares</title>
+  <meta name="description" content="Reparación de celulares y equipos electrónicos. Diagnóstico y servicio técnico confiable." />
+  <style>
+    :root{
+      --blue:#4A5D73;
+      --dark:#2B2E2F;
+      --light:#F2F2EE;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--dark);
+      background:var(--light);
+      line-height:1.5;
+    }
+    .wrap{
+      max-width:960px;
+      padding:32px 20px;
+      margin:0 auto;
+    }
+    header{
+      border-bottom:1px solid #ddd;
+      margin-bottom:32px;
+      padding-bottom:16px;
+    }
+    .brand{
+      font-weight:700;
+      letter-spacing:.18em;
+      color:var(--blue);
+    }
+    h1{
+      font-size:28px;
+      margin:8px 0 0;
+    }
+    section{margin:32px 0}
+    h2{
+      font-size:18px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:12px;
+    }
+    ul{padding-left:18px}
+    a{
+      color:var(--blue);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .cta{
+      display:inline-block;
+      margin-top:12px;
+      padding:10px 14px;
+      border:1px solid var(--blue);
+      border-radius:4px;
+    }
+    footer{
+      border-top:1px solid #ddd;
+      margin-top:40px;
+      padding-top:16px;
+      font-size:14px;
+      color:#666;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">ESPNER</div>
+      <h1>Reparación de celulares y equipos electrónicos</h1>
+    </header>
+
+    <section>
+      <h2>Servicios</h2>
+      <ul>
+        <li>Reparación de celulares</li>
+        <li>Diagnóstico técnico</li>
+        <li>Mantenimiento y solución de fallas</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contacto</h2>
+      <p>
+        Correo: <a href="mailto:contact@espner.org">contact@espner.org</a><br />
+        WhatsApp / Teléfono: <strong>AGREGA TU NÚMERO AQUÍ</strong>
+      </p>
+      <a class="cta" href="mailto:contact@espner.org">Escríbenos</a>
+    </section>
+
+    <footer>
+      © <span id="y"></span> ESPNER
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
