@@ -4,99 +4,281 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ESPNER — Reparación de celulares</title>
-  <meta name="description" content="Reparación de celulares y equipos electrónicos. Diagnóstico y servicio técnico confiable." />
+  <meta name="description" content="Reparación de celulares y equipos electrónicos. Diagnóstico claro y servicio técnico confiable." />
   <style>
     :root{
       --blue:#4A5D73;
       --dark:#2B2E2F;
       --light:#F2F2EE;
+      --line:#d9d9d3;
+      --card:#ffffff;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--dark);
       background:var(--light);
-      line-height:1.5;
+      line-height:1.55;
     }
     .wrap{
-      max-width:960px;
-      padding:32px 20px;
+      max-width:980px;
+      padding:28px 20px 40px;
       margin:0 auto;
     }
-    header{
-      border-bottom:1px solid #ddd;
-      margin-bottom:32px;
-      padding-bottom:16px;
+
+    /* Header */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0 18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:26px;
     }
     .brand{
-      font-weight:700;
-      letter-spacing:.18em;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .logo{
+      height:26px;
+      width:auto;
+      display:block;
+    }
+    .tagline{
+      font-size:13px;
+      color:#555;
+      margin-top:2px;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      color:var(--dark);
+      text-decoration:none;
+      font-weight:650;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+    nav a:hover{opacity:1}
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--blue);
+      border-radius:6px;
+      text-decoration:none;
       color:var(--blue);
+      font-weight:750;
+      font-size:13px;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .cta:hover{filter:brightness(0.95)}
+
+    /* Hero */
+    .hero{
+      padding:18px 0 6px;
     }
     h1{
-      font-size:28px;
-      margin:8px 0 0;
+      font-size:30px;
+      margin:0 0 10px;
+      letter-spacing:.01em;
     }
-    section{margin:32px 0}
+    .lead{
+      max-width:70ch;
+      margin:0 0 16px;
+      color:#444;
+    }
+
+    /* Sections */
+    section{margin:30px 0}
     h2{
-      font-size:18px;
-      letter-spacing:.12em;
+      font-size:14px;
+      letter-spacing:.18em;
       text-transform:uppercase;
       color:var(--blue);
-      margin-bottom:12px;
+      margin:0 0 12px;
     }
-    ul{padding-left:18px}
-    a{
-      color:var(--blue);
-      text-decoration:none;
-      font-weight:600;
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
     }
-    .cta{
-      display:inline-block;
-      margin-top:12px;
-      padding:10px 14px;
-      border:1px solid var(--blue);
-      border-radius:4px;
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:14px;
+      min-height:120px;
     }
-    footer{
-      border-top:1px solid #ddd;
-      margin-top:40px;
-      padding-top:16px;
+    .card h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.04em;
+    }
+    .card p{
+      margin:0;
+      color:#555;
       font-size:14px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:650;
+      color:#444;
+    }
+
+    /* Contact box */
+    .contact{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:14px;
+    }
+    .contact p{margin:0;color:#444}
+    .contact strong{color:var(--dark)}
+    .muted{color:#666;font-size:13px}
+
+    footer{
+      border-top:1px solid var(--line);
+      margin-top:36px;
+      padding-top:14px;
+      font-size:13px;
       color:#666;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+      .topbar{align-items:flex-start}
+      nav{justify-content:flex-start}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div class="brand">ESPNER</div>
-      <h1>Reparación de celulares y equipos electrónicos</h1>
-    </header>
 
-    <section>
+    <!-- Header -->
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" src="logo.svg" alt="ESPNER" />
+        <div>
+          <div class="tagline">Reparación · Diagnóstico · Servicio técnico</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#contacto">Contacto</a>
+        <a class="cta" href="https://wa.me/52TU_NUMERO_AQUI" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Reparación de celulares y equipos electrónicos</h1>
+      <p class="lead">
+        Diagnóstico claro, reparación limpia y comunicación directa. Atención por WhatsApp y seguimiento rápido.
+      </p>
+    </div>
+
+    <!-- Services -->
+    <section id="servicios">
       <h2>Servicios</h2>
-      <ul>
-        <li>Reparación de celulares</li>
-        <li>Diagnóstico técnico</li>
-        <li>Mantenimiento y solución de fallas</li>
-      </ul>
+      <div class="grid">
+        <div class="card">
+          <h3>Reparación de celulares</h3>
+          <p>Pantalla, batería, puertos, micrófono, bocina, cámara y fallas comunes.</p>
+        </div>
+        <div class="card">
+          <h3>Diagnóstico técnico</h3>
+          <p>Revisión y prueba para identificar la falla antes de reparar. Cotización clara.</p>
+        </div>
+        <div class="card">
+          <h3>Mantenimiento</h3>
+          <p>Limpieza, revisión general y solución de fallas intermitentes o por uso.</p>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contacto</h2>
-      <p>
-        Correo: <a href="mailto:contact@espner.org">contact@espner.org</a><br />
-        WhatsApp / Teléfono: <strong>AGREGA TU NÚMERO AQUÍ</strong>
+    <!-- Brands -->
+    <section id="marcas">
+      <h2>Marcas que atendemos</h2>
+      <div class="chips">
+        <span class="chip">Apple (iPhone)</span>
+        <span class="chip">Samsung</span>
+        <span class="chip">Xiaomi</span>
+        <span class="chip">Motorola</span>
+        <span class="chip">Huawei</span>
+        <span class="chip">OPPO</span>
+        <span class="chip">Realme</span>
+        <span class="chip">Vivo</span>
+        <span class="chip">OnePlus</span>
+        <span class="chip">Google Pixel</span>
+      </div>
+      <p class="muted" style="margin-top:10px;">
+        ¿No ves tu marca? Escríbenos — normalmente podemos revisarla.
       </p>
-      <a class="cta" href="mailto:contact@espner.org">Escríbenos</a>
+    </section>
+
+    <!-- Contact -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <div class="contact">
+        <div>
+          <p><strong>Correo:</strong> <a href="mailto:contact@espner.org">contact@espner.org</a></p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/52TU_NUMERO_AQUI" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+          <p class="muted">Horario: (pon tu horario aquí)</p>
+        </div>
+        <div>
+          <a class="cta" href="mailto:contact@espner.org">Enviar correo</a>
+        </div>
+      </div>
     </section>
 
     <footer>
-      © <span id="y"></span> ESPNER
+      <div>© <span id="y"></span> ESPNER</div>
+      <div class="muted">Sitio temporal (GitHub Pages). Próximamente versión completa.</div>
     </footer>
+
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
