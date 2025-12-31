@@ -327,14 +327,41 @@
   <script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .whatsapp-button {
+    margin-top: 8px;
+  }
+}
+
 
     // === WhatsApp setup ===
     // Put your number here (digits only). Example: 525548502918
-    const WHATSAPP_NUMBER = "5255520176224"; // 52 + your number
+   const WHATSAPP_NUMBER = "525520176224";
 
-    const PREFILL = "Hola%2C%20te%20contacto%20desde%20el%20sitio%20de%20ESPNER.%0A%0AResponde%20con%20un%20n%C3%BAmero%3A%0A1)%20Cotizaci%C3%B3n%20%2F%20Diagn%C3%B3stico%0A2)%20Horarios%20y%20zona%0A3)%20Servicios%0A4)%20Garant%C3%ADa%0A5)%20Estado%20de%20reparaci%C3%B3n";
+   const PREFILL = encodeURIComponent(
+     "Hola 👋 Bienvenido a ESPNER.\n\n" +
+      "Selecciona una opción:\n" +
+      "1️⃣ Ingreso de equipo\n" +
+      "2️⃣ Estado de reparación\n" +
+      "3️⃣ Horarios\n" +
+      "4️⃣ Ubicación\n\n" +
+      "Escribe el número o palabra clave."
+    );
 
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${PREFILL}`;
+    const waUrl = `https://wa.me/${525520176224}?text=${PREFILL}`;
+
 
     document.getElementById('waTop').href = waUrl;
     document.getElementById('waBottom').href = waUrl;
