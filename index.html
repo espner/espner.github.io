@@ -1,389 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ESPNER — Reparación de celulares</title>
-  <meta name="description" content="Reparación de celulares y equipos electrónicos. Diagnóstico claro y servicio técnico confiable." />
+  <title>ESPNER — Reparación y diagnóstico</title>
+  <meta name="description" content="Reparación y diagnóstico de celulares y equipos electrónicos. Atención por WhatsApp con seguimiento por ticket." />
+
   <style>
     :root{
-      --blue:#4A5D73;
-      --dark:#2B2E2F;
-      --light:#F2F2EE;
-      --line:#d9d9d3;
+      --bg:#f4f3ef;
+      --text:#1b1f23;
+      --muted:#6b7280;
+      --line:#d8d6cf;
       --card:#ffffff;
+      --accent:#4a5d73; /* tu azul */
+      --accent-2:#2b3a4a;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+      --max:980px;
     }
+
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--dark);
-      background:var(--light);
-      line-height:1.55;
-    }
-    .wrap{
-      max-width:980px;
-      padding:28px 20px 40px;
-      margin:0 auto;
+      background:var(--bg);
+      color:var(--text);
     }
 
-    /* Header */
-    .topbar{
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:28px 18px 80px;}
+
+    /* HEADER */
+    header{
+      position: sticky;
+      top:0;
+      z-index:50;
+      background:rgba(244,243,239,.92);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .bar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      padding:14px 0 18px;
-      border-bottom:1px solid var(--line);
-      margin-bottom:26px;
+      gap:14px;
     }
+
     .brand{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
       min-width:0;
     }
-    .logo{
-      height:28px;
+
+    .brand img{
+      height:38px;
       width:auto;
       display:block;
     }
+
     nav{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:22px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
-    nav a{
-      color:var(--dark);
-      text-decoration:none;
-      font-weight:650;
-      font-size:13px;
+
+    .navlink{
+      font-weight:700;
+      letter-spacing:.12em;
+      font-size:14px;
+      color:var(--accent-2);
+      text-transform:uppercase;
+      opacity:.88;
+    }
+    .navlink:hover{opacity:1}
+
+    .btn{
+      border:2px solid rgba(74,93,115,.55);
+      color:var(--accent);
+      background:transparent;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
       letter-spacing:.08em;
       text-transform:uppercase;
-      opacity:.85;
-    }
-    nav a:hover{opacity:1}
-
-    .cta{
+      font-size:13px;
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--blue);
-      border-radius:6px;
-      text-decoration:none;
-      color:var(--blue);
-      font-weight:750;
-      font-size:13px;
-      letter-spacing:.05em;
-      text-transform:uppercase;
       white-space:nowrap;
     }
-    .cta:hover{filter:brightness(0.95)}
+    .btn:hover{border-color:rgba(74,93,115,.85)}
 
-    /* Hero */
-    .hero{padding:18px 0 6px;}
-    h1{
-      font-size:30px;
-      margin:0 0 10px;
-      letter-spacing:.01em;
+    /* HERO */
+    .hero{
+      padding-top:26px;
     }
-    .lead{
-      max-width:70ch;
-      margin:0 0 16px;
-      color:#444;
+    .hero h1{
+      margin:0 0 14px;
+      font-size:52px;
+      line-height:1.02;
+      letter-spacing:-.02em;
+    }
+    .hero p{
+      margin:0;
+      max-width:62ch;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.55;
+    }
+    .hero-actions{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    /* Sections */
-    section{margin:30px 0}
-    h2{
-      font-size:14px;
+    hr.sep{
+      margin:28px 0;
+      border:0;
+      border-top:1px solid var(--line);
+    }
+
+    /* SECTIONS */
+    .section-title{
+      font-weight:900;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color:var(--blue);
-      margin:0 0 12px;
-    }
-    h3.subhead{
-      margin:14px 0 10px;
-      font-size:13px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:#555;
+      color:var(--accent-2);
+      margin:0 0 14px;
+      font-size:14px;
     }
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:12px;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
     }
+
     .card{
+      grid-column: span 12;
       background:var(--card);
-      border:1px solid var(--line);
-      border-radius:10px;
-      padding:14px;
-      min-height:120px;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px 18px;
     }
+
     .card h3{
-      margin:0 0 8px;
-      font-size:15px;
-      letter-spacing:.04em;
+      margin:0 0 6px;
+      font-size:18px;
     }
     .card p{
       margin:0;
-      color:#555;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .two .card{grid-column: span 6;}
+    .three .card{grid-column: span 4;}
+
+    /* LISTS */
+    ul.clean{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* FOOTER */
+    footer{
+      margin-top:44px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
       font-size:14px;
     }
 
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    .chip{
-      border:1px solid var(--line);
-      background:#fff;
-      padding:7px 10px;
-      border-radius:999px;
-      font-size:13px;
-      font-weight:650;
-      color:#444;
+    /* MOBILE FIXES (THIS IS THE IMPORTANT PART) */
+    @media (max-width: 840px){
+      .hero h1{font-size:40px}
+      .two .card{grid-column: span 12;}
+      .three .card{grid-column: span 12;}
     }
 
-    /* Contact box */
-    .contact{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      justify-content:space-between;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:10px;
-      padding:14px;
-    }
-    .contact p{margin:0;color:#444}
-    .muted{color:#666;font-size:13px}
-
-    /* Copy email button */
-    .ghost{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:6px;
-      background:#fff;
-      color:#444;
-      font-weight:750;
-      font-size:13px;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-    .ghost:hover{filter:brightness(0.98)}
-    .toast{
-      display:none;
-      margin-top:10px;
-      font-size:13px;
-      color:#2b2e2f;
-    }
-    .toast.show{display:block}
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top:36px;
-      padding-top:14px;
-      font-size:13px;
-      color:#666;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    @media (max-width: 860px){
-      .grid{grid-template-columns:1fr}
-      .topbar{align-items:flex-start}
-      nav{justify-content:flex-start}
+    @media (max-width: 640px){
+      .bar{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      nav{
+        width:100%;
+        justify-content:flex-start;
+        gap:14px;
+      }
+      .btn{width:100%;}
+      .brand img{height:34px}
+      .hero h1{font-size:34px}
     }
   </style>
 </head>
-<body>
-  <div class="wrap">
 
-    <!-- Header -->
-    <div class="topbar">
+<body>
+
+  <header>
+    <div class="bar">
       <div class="brand">
-        <img class="logo" src="logo.svg" alt="ESPNER" />
+        <!-- Cambia la ruta si tu logo no está en assets/logo.svg -->
+        <img src="assets/logo.svg" alt="ESPNER" />
       </div>
 
       <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#marcas">Marcas</a>
-        <a href="#contacto">Contacto</a>
+        <a class="navlink" href="#servicios">Servicios</a>
+        <a class="navlink" href="#marcas">Marcas</a>
+        <a class="navlink" href="#contacto">Contacto</a>
 
-        <!-- WhatsApp top button -->
-        <a class="cta" id="waTop" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <!-- IMPORTANT: this is a REAL WhatsApp link, not a #anchor -->
+        <a class="btn" id="waTop" href="#" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
     </div>
+  </header>
 
-    <!-- Hero -->
-    <div class="hero">
+  <main class="container">
+    <section class="hero">
       <h1>Reparación de celulares y equipos electrónicos</h1>
-      <p class="lead">
-        Diagnóstico claro, reparación limpia y comunicación directa. Atención por WhatsApp y seguimiento rápido.
-      </p>
-    </div>
+      <p>Diagnóstico claro, reparación limpia y comunicación directa. Atención por WhatsApp con seguimiento rápido por ticket.</p>
 
-    <!-- Services -->
+      <div class="hero-actions">
+        <a class="btn" id="waHero" href="#" target="_blank" rel="noopener">Enviar WhatsApp</a>
+        <a class="btn" href="#servicios">Ver servicios</a>
+      </div>
+    </section>
+
+    <hr class="sep" />
+
     <section id="servicios">
-      <h2>Servicios</h2>
-      <div class="grid">
+      <p class="section-title">Servicios</p>
+
+      <div class="grid two">
         <div class="card">
           <h3>Reparación de celulares</h3>
           <p>Pantalla, batería, puertos, micrófono, bocina, cámara y fallas comunes.</p>
         </div>
+
         <div class="card">
           <h3>Diagnóstico técnico</h3>
-          <p>Revisión y prueba para identificar la falla antes de reparar. Cotización clara.</p>
+          <p>Evaluación y cotización clara. Si procede reparación, se define tiempo estimado y costo antes de iniciar.</p>
         </div>
+
         <div class="card">
-          <h3>Mantenimiento</h3>
-          <p>Limpieza, revisión general y solución de fallas intermitentes o por uso.</p>
+          <h3>Mantenimiento y solución de fallas</h3>
+          <p>Limpieza, revisión de carga, conectores, software y rendimiento.</p>
+        </div>
+
+        <div class="card">
+          <h3>Computadoras y laptops</h3>
+          <p>Formateo, software, limpieza interna, SSD/RAM, carga, teclado, bisagras y diagnóstico.</p>
         </div>
       </div>
     </section>
 
-    <!-- Brands -->
+    <hr class="sep" />
+
     <section id="marcas">
-      <h2>Marcas que atendemos</h2>
+      <p class="section-title">Marcas que entendemos</p>
 
-      <h3 class="subhead">Celulares</h3>
-      <div class="chips">
-        <span class="chip">Apple (iPhone)</span>
-        <span class="chip">Samsung</span>
-        <span class="chip">Xiaomi</span>
-        <span class="chip">Motorola</span>
-        <span class="chip">Huawei</span>
-        <span class="chip">OPPO</span>
-        <span class="chip">Realme</span>
-        <span class="chip">Vivo</span>
-        <span class="chip">OnePlus</span>
-        <span class="chip">Google Pixel</span>
-      </div>
-
-      <h3 class="subhead">Laptops</h3>
-      <div class="chips" style="margin-top:6px;">
-        <span class="chip">HP</span>
-        <span class="chip">Dell</span>
-        <span class="chip">Lenovo</span>
-        <span class="chip">ASUS</span>
-        <span class="chip">Acer</span>
-        <span class="chip">Apple (MacBook)</span>
-        <span class="chip">MSI</span>
-      </div>
-
-      <p class="muted" style="margin-top:10px;">
-        ¿No ves tu marca? Escríbenos — normalmente podemos revisarla.
-      </p>
-    </section>
-
-    <!-- Contact -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <div class="contact">
-        <div>
-          <p><strong>Correo:</strong> <a href="mailto:contact@espner.org" id="mailLink">contact@espner.org</a></p>
-          <p><strong>WhatsApp:</strong> <a href="#" id="waBottom" target="_blank" rel="noopener">Abrir chat en WhatsApp</a></p>
-          <p class="muted">Horario: (pon tu horario aquí)</p>
-
-          <div class="toast" id="toast">Copiado: contact@espner.org</div>
+      <div class="grid three">
+        <div class="card">
+          <h3>Celulares</h3>
+          <p>
+            <strong>Apple</strong>, <strong>Samsung</strong>, <strong>Xiaomi</strong>, <strong>Motorola</strong>, <strong>Huawei</strong>,
+            OPPO, vivo, Realme, Honor.
+          </p>
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <!-- This SHOULD open the mail app if user has one -->
-          <a class="cta" href="mailto:contact@espner.org">Enviar correo</a>
+        <div class="card">
+          <h3>Laptops / PCs</h3>
+          <p>
+            <strong>HP</strong>, <strong>Lenovo</strong>, <strong>Dell</strong>, <strong>Acer</strong>, <strong>ASUS</strong>,
+            MSI, Apple (Mac).
+          </p>
+        </div>
 
-          <!-- Copy email fallback (works even if mail app isn't configured) -->
-          <button class="ghost" id="copyEmail" type="button">Copiar correo</button>
+        <div class="card">
+          <h3>Otros electrónicos</h3>
+          <p>Accesorios, equipos con fallas de carga, revisión general y diagnóstico.</p>
+        </div>
+      </div>
+    </section>
 
-          <!-- WhatsApp CTA -->
-          <a class="cta" href="#" id="waCta" target="_blank" rel="noopener">WhatsApp</a>
+    <hr class="sep" />
+
+    <section id="contacto">
+      <p class="section-title">Contacto</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Correo</h3>
+          <p>
+            <a id="emailLink" href="mailto:contact@espner.org">contact@espner.org</a><br/>
+            <span style="color:var(--muted)">Toca para enviar correo.</span>
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>WhatsApp</h3>
+          <p>
+            Atención directa y seguimiento por ticket.<br/>
+            <span style="color:var(--muted)">Toca el botón para abrir chat.</span>
+          </p>
+          <div style="margin-top:12px;">
+            <a class="btn" id="waBottom" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div>© <span id="y"></span> ESPNER</div>
-      <div class="muted">Sitio temporal (GitHub Pages). Próximamente versión completa.</div>
+      © <span id="year"></span> ESPNER
     </footer>
-
-  </div>
+  </main>
 
   <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-    @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
+    // ✅ IMPORTANT: WhatsApp needs ONLY digits (no +, no spaces)
+    const WHATSAPP_NUMBER = "525520176224";
 
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .whatsapp-button {
-    margin-top: 8px;
-  }
-}
-
-
-    // === WhatsApp setup ===
-    // Put your number here (digits only). Example: 525548502918
-   const WHATSAPP_NUMBER = "525520176224";
-
-   const PREFILL = encodeURIComponent(
-     "Hola 👋 Bienvenido a ESPNER.\n\n" +
+    const PREFILL_TEXT =
+      "Hola 👋 Bienvenido a ESPNER.\n\n" +
       "Selecciona una opción:\n" +
-      "1️⃣ Ingreso de equipo\n" +
-      "2️⃣ Estado de reparación\n" +
-      "3️⃣ Horarios\n" +
-      "4️⃣ Ubicación\n\n" +
-      "Escribe el número o palabra clave."
-    );
+      "1) Menu +Ingreso de equipo\n"
+      "2) Estado de reparación\n" +
+      "3) Horarios\n" +
+      "4) Ubicación\n\n" +
+      "Escribe el número u opción y te atiendo.";
 
-    const waUrl = `https://wa.me/${525520176224}?text=${PREFILL}`;
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILL_TEXT)}`;
 
+    // Hook all WhatsApp buttons to the REAL WhatsApp link
+    document.getElementById("waTop").href = waUrl;
+    document.getElementById("waHero").href = waUrl;
+    document.getElementById("waBottom").href = waUrl;
 
-    document.getElementById('waTop').href = waUrl;
-    document.getElementById('waBottom').href = waUrl;
-    document.getElementById('waCta').href = waUrl;
-
-    // === Copy email button ===
-    const email = "contact@espner.org";
-    const btn = document.getElementById('copyEmail');
-    const toast = document.getElementById('toast');
-
-    btn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(email);
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1800);
-      } catch (e) {
-        // Fallback if clipboard blocked
-        prompt("Copia este correo:", email);
-      }
-    });
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
 
 
