@@ -338,16 +338,17 @@
     // ✅ IMPORTANT: WhatsApp needs ONLY digits (no +, no spaces)
     const WHATSAPP_NUMBER = "525520176224";
 
-    const PREFILL_TEXT =
-      "Hola 👋 Bienvenido a ESPNER.\n\n" +
-      "Escribe 1 para el menú de opciones:\n" +
-      "1) Menu +Ingreso de equipo\n"
-      "2) Estado de reparación\n" +
-      "3) Horarios\n" +
-      "4) Ubicación\n\n" +
-      "Escribe el número u opción y te atiendo.";
+    const PREFILL =
+      "Hola%20%F0%9F%91%8B%20Bienvenido%20a%20ESPNER.%0A%0A" +
+      "Selecciona%20una%20opci%C3%B3n%3A%0A" +
+      "1)%20Ingreso%20de%20equipo%0A" +
+      "2)%20Estado%20de%20mi%20reparaci%C3%B3n%0A" +
+      "3)%20Horarios%0A" +
+      "4)%20Ubicaci%C3%B3n%0A%0A" +
+      "Responde%20con%20el%20n%C3%BAmero%20(1-4)%20y%20te%20atiendo.";
 
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILL_TEXT)}`;
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${PREFILL}`;
+
 
     // Hook all WhatsApp buttons to the REAL WhatsApp link
     document.getElementById("waTop").href = waUrl;
