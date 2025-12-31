@@ -100,40 +100,94 @@
     }
     .btn:hover{border-color:rgba(74,93,115,.85)}
 
-    /* HERO */
-    .hero{
-      padding-top:26px;
-    }
-    .hero h1{
-      margin:0 0 14px;
-      font-size:50px;
-      line-height:1.1;
-      letter-spacing:-0.015em;
-      font-weight:600;
-      color:#2b2f33;
-   }
+  /* HERO (with image background) */
+.hero{
+  position: relative;
+  padding: 34px 0 26px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: var(--shadow);
+  background: #e9e7df; /* fallback if image fails */
+}
 
-    .hero p{
-      margin:0;
-      max-width:62ch;
-      color:#5f6670;
-      font-size:17px;
-      line-height:1.65;
-    }
+/* Background image layer */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url("assets/hero.webp"); /* <-- change filename if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.02);
+}
 
-    }
-    .hero-actions{
-      margin-top:20px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+/* Dark/soft overlay for readability */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(244,243,239,.92) 0%,
+    rgba(244,243,239,.80) 46%,
+    rgba(244,243,239,.55) 100%
+  );
+}
 
-    hr.sep{
-      margin:28px 0;
-      border:0;
-      border-top:1px solid var(--line);
-    }
+/* Content sits above background + overlay */
+.hero > *{
+  position: relative;
+  z-index: 1;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.hero h1{
+  margin:0 0 14px;
+  font-size:48px;
+  line-height:1.08;
+  letter-spacing:-0.015em;
+  font-weight:650;
+  color:#2b2f33;
+}
+
+.hero p{
+  margin:0;
+  max-width:62ch;
+  color:#4f5660;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.hero-actions{
+  margin-top:20px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* MOBILE tweaks */
+@media (max-width: 840px){
+  .hero h1{font-size:40px}
+}
+
+@media (max-width: 640px){
+  .hero{
+    padding: 26px 0 18px;
+    border-radius: 18px;
+  }
+  .hero h1{font-size:32px}
+  .hero::after{
+    background: linear-gradient(
+      180deg,
+      rgba(244,243,239,.92) 0%,
+      rgba(244,243,239,.82) 55%,
+      rgba(244,243,239,.65) 100%
+    );
+  }
+}
 
     /* SECTIONS */
     .section-title{
